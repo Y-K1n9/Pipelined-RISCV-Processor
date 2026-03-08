@@ -6,10 +6,13 @@
 `include "ImmGen.v"
 `include "instruction_mem.v"
 `include "mux.v"
+`include "mux4x2.v"
 `include "PC.v"
 `include "RegisterFile.v"
 `include "Shiftleft1.v"
 `include "equalityComparator.v"
+`include "ForwardingUnit.v"
+`include "HazardDetectionUnit.v"
 module processor(
     input clk, reset
 );
@@ -82,16 +85,12 @@ reg [63:0] IDEXrs2;
 reg [63:0] IDEXImm;
 // Instruction
 reg [31:0] IDEXIR;
+// in data forwarding logic, we pass rs1 and rs2 address
+reg [4:0] IDEXrs1Addr;
+reg [4:0] IDEXrs2Addr;
 ///////////////////////////////////
 
 
-alu_64_bit alu1(
-    .a(IDEXrs1), .b(immRegOut),
-    .opcode(ALUControlSig), .result(ALUresult), 
-    .cout(), .carry_flag(), // useless
-    .overflow_flag(), // useless
-    .zero_flag() // no use of ALU zero flag now
-);
 
 
 
@@ -101,6 +100,7 @@ reg [63:0] EXMEMALUResult;
 // it stores value to be written into 
 // the memory in case of load
 reg [63:0] EXMEMrs2;
+reg [4:0] EXMEMrs2Addr;
 // rd passed till MEM/WB register
 reg [4:0] EXMEMrd;
 // mem
@@ -111,10 +111,51 @@ reg EXMEMRegWrite;
 reg EXMEMMemtoReg;
 
 
+wire [1:0] ForwardA, ForwardB;
+wire Forward_sd;
+
+ForwardingUnit FU1(
+    .EXMEMRegWrite(EXMEMRegWrite), .MEMWBRegWrite(MEMWBRegWrite),
+    .EXMEMrd(EXMEMrd), .EXMEMrs2Addr(EXMEMrs2Addr), .MEMWBrd(MEMWBrd),
+    .IDEXrs1Addr(IDEXrs1Addr), .IDEXrs2Addr(IDEXrs2Addr),
+    .ForwardA(ForwardA), .ForwardB(ForwardB),
+    .Forward_sd(Forward_sd)
+);
+
+wire [63:0] sdMUXOp;
+
+mux sdMUX(
+    // write_back value will be passed
+    .a(EXMEMrs2), .b(write_back), .sel(Forward_sd),
+    .out(sdMUXOp)
+);
+
+wire[63:0] ALUm1Op, ALUm2Op;
+
+mux4x2 ALUm1(
+    // we pass write_back to be even more sure and not just MEMWBALUResult
+    .a(IDEXrs1), .b(write_back), .c(EXMEMALUResult),
+    .sel(ForwardA), .out(ALUm1Op)
+);
+
+mux4x2 ALUm2(
+    // we pass write_back to be even more sure and not just MEMWBALUResult
+    .a(IDEXrs2), .b(write_back), .c(EXMEMALUResult),
+    .sel(ForwardB), .out(ALUm2Op)
+);
+
+alu_64_bit alu1(
+    .a(ALUm1Op), .b(immRegOut),
+    .opcode(ALUControlSig), .result(ALUresult), 
+    .cout(), .carry_flag(), // useless
+    .overflow_flag(), // useless
+    .zero_flag() // no use of ALU zero flag now
+);
+
 DataMem DM1(
     .clk(clk), .reset(reset),
     .MemRead(EXMEMMemRead), .MemWrite(EXMEMMemWrite),
-    .address(EXMEMALUResult[9:0]), .write_data(EXMEMrs2),
+    .address(EXMEMALUResult[9:0]), .write_data(sdMUXOp),
     .read_data(read_data)
 );
 
@@ -144,9 +185,16 @@ ALUControl ALUC1(
 
 wire [63:0] pc_in;
 wire [63:0] pc_out;
+wire PCWrite, Bubble, IFIDEnable;
+
+HazardDetectionUnit HDU1(
+    .IDEXMemRead(IDEXMemRead),
+    .Instruction(Instruction), .IDEXIR(IDEXIR),
+    .PCWrite(PCWrite), .IFIDEnable(IFIDEnable), .Bubble(Bubble)
+);
 
 PC PC1(
-    .clk(clk), .reset(reset),
+    .clk(clk), .reset(reset), .enable(PCWrite), // enable added for pipelined implementation
     .pc_in(pc_in),
     .pc_out(pc_out)
 );
@@ -185,8 +233,9 @@ mux PCSource(
 );
 
 //IDEXrs2 defined above thiss...
+// but we use ALUm2Op due to data forwarding
 mux ALUSource(
-    .a(IDEXrs2), .b(IDEXImm), .sel(IDEXALUSrc),
+    .a(ALUm2Op), .b(IDEXImm), .sel(IDEXALUSrc),
     .out(immRegOut)
 );
 
@@ -200,24 +249,67 @@ equalityComparator comp1(
 );
 
 
+wire IFFlush;
+// PC
+assign IFFlush = Branch&rs1EqualRs2;
+// a mux for Bubble BM BubbleMux, it's outputs are:
+reg BMIDEXMemRead;
+reg BMIDEXMemWrite;
+reg [1:0] BMIDEXALUOp;
+reg BMIDEXALUSrc;
+reg BMIDEXMemtoReg;
+reg BMIDEXRegWrite;
+always@(*)begin
+    if(Bubble) begin // or:    if(Bubble||IFFlush) begin::: If I do if(Bubble||IFFlush) begin, then 
+        BMIDEXMemRead = 1'b0;  //   the branch instruction itself will become useless
+        BMIDEXMemWrite = 1'b0;
+        BMIDEXALUOp = 2'b00;
+        BMIDEXALUSrc = 1'b0;
+        BMIDEXMemtoReg = 1'b0;
+        BMIDEXRegWrite = 1'b0;
+    end
+    else begin
+        BMIDEXMemRead = MemRead;
+        BMIDEXMemWrite = MemWrite;
+        BMIDEXALUOp = ALUOp;
+        BMIDEXALUSrc = ALUSrc;
+        BMIDEXMemtoReg = MemtoReg;
+        BMIDEXRegWrite = RegWrite;
+    end
 
+end
 
 always@(posedge clk) begin
     if(!reset) begin
         // IF/ID
-        IFIDPC<=pc_out;
-        IFIDIR<=IMEMOut;
+        if(IFIDEnable) begin
+            if(IFFlush) begin
+                IFIDPC<=pc_out;
+                IFIDIR<=32'h00000013;
+            end
+            else begin
+                IFIDPC<=pc_out;
+                IFIDIR<=IMEMOut;
+            end
+        end
+        else begin
+            IFIDPC<=IFIDPC;
+            IFIDIR<=IFIDIR;
+        end
+
         // ID/EX
-        IDEXMemRead<=MemRead;
-        IDEXMemWrite<=MemWrite;
-        IDEXALUOp<=ALUOp;
-        IDEXALUSrc<=ALUSrc;
-        IDEXMemtoReg<=MemtoReg;
-        IDEXRegWrite<=RegWrite;
+        IDEXMemRead<=BMIDEXMemRead;
+        IDEXMemWrite<=BMIDEXMemWrite;
+        IDEXALUOp<=BMIDEXALUOp;
+        IDEXALUSrc<=BMIDEXALUSrc;
+        IDEXMemtoReg<=BMIDEXMemtoReg;
+        IDEXRegWrite<=BMIDEXRegWrite;
         IDEXrs1<=rs1;
         IDEXrs2<=rs2;
         IDEXImm<=immediate;
         IDEXIR<=Instruction;
+        IDEXrs1Addr<=Instruction[19:15];
+        IDEXrs2Addr<=Instruction[24:20];
         // EX/MEM
         EXMEMMemRead<=IDEXMemRead;
         EXMEMMemWrite<=IDEXMemWrite;
@@ -225,6 +317,7 @@ always@(posedge clk) begin
         EXMEMMemtoReg<=IDEXMemtoReg;
         EXMEMRegWrite<=IDEXRegWrite;
         EXMEMrs2<=IDEXrs2;
+        EXMEMrs2Addr<=IDEXrs2Addr;
         EXMEMrd<=IDEXIR[11:7];
         // MEM/WB
         MEMWBReadData<=read_data;
