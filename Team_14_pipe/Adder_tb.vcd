@@ -1,0 +1,2220 @@
+$date
+	Sun Feb 22 18:52:55 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module Adder_tb $end
+$var wire 64 ! res [63:0] $end
+$var reg 64 " a [63:0] $end
+$var reg 64 # b [63:0] $end
+$var integer 32 $ file_handle [31:0] $end
+$var integer 32 % pass_count [31:0] $end
+$var integer 32 & total_tests [31:0] $end
+$scope module uut $end
+$var wire 64 ' a [63:0] $end
+$var wire 64 ( b [63:0] $end
+$var wire 64 ) res [63:0] $end
+$var wire 16 * carrys [15:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 + i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 , a [3:0] $end
+$var wire 4 - b [3:0] $end
+$var wire 1 . cin $end
+$var wire 1 / p0cin $end
+$var wire 1 0 p1g0 $end
+$var wire 1 1 p1g0_p1p0cin $end
+$var wire 1 2 p1p0 $end
+$var wire 1 3 p1p0cin $end
+$var wire 1 4 p2g1 $end
+$var wire 1 5 p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 6 p2p1 $end
+$var wire 1 7 p2p1g0 $end
+$var wire 1 8 p2p1g0_p2p1p0cin $end
+$var wire 1 9 p2p1p0 $end
+$var wire 1 : p2p1p0cin $end
+$var wire 1 ; p3g2 $end
+$var wire 1 < p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 = p3p2 $end
+$var wire 1 > p3p2g1 $end
+$var wire 1 ? p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 @ p3p2p1 $end
+$var wire 1 A p3p2p1g0 $end
+$var wire 1 B p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 C p3p2p1p0 $end
+$var wire 1 D p3p2p1p0cin $end
+$var wire 4 E temps [3:0] $end
+$var wire 4 F sum [3:0] $end
+$var wire 4 G p [3:0] $end
+$var wire 4 H g [3:0] $end
+$var wire 1 I cout $end
+$var wire 4 J carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 K i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 L i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 M i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 N i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 O i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 P a [3:0] $end
+$var wire 4 Q b [3:0] $end
+$var wire 1 R cin $end
+$var wire 1 S p0cin $end
+$var wire 1 T p1g0 $end
+$var wire 1 U p1g0_p1p0cin $end
+$var wire 1 V p1p0 $end
+$var wire 1 W p1p0cin $end
+$var wire 1 X p2g1 $end
+$var wire 1 Y p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 Z p2p1 $end
+$var wire 1 [ p2p1g0 $end
+$var wire 1 \ p2p1g0_p2p1p0cin $end
+$var wire 1 ] p2p1p0 $end
+$var wire 1 ^ p2p1p0cin $end
+$var wire 1 _ p3g2 $end
+$var wire 1 ` p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 a p3p2 $end
+$var wire 1 b p3p2g1 $end
+$var wire 1 c p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 d p3p2p1 $end
+$var wire 1 e p3p2p1g0 $end
+$var wire 1 f p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 g p3p2p1p0 $end
+$var wire 1 h p3p2p1p0cin $end
+$var wire 4 i temps [3:0] $end
+$var wire 4 j sum [3:0] $end
+$var wire 4 k p [3:0] $end
+$var wire 4 l g [3:0] $end
+$var wire 1 m cout $end
+$var wire 4 n carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 o i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 p i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 q i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 r i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 s i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 t a [3:0] $end
+$var wire 4 u b [3:0] $end
+$var wire 1 v cin $end
+$var wire 1 w p0cin $end
+$var wire 1 x p1g0 $end
+$var wire 1 y p1g0_p1p0cin $end
+$var wire 1 z p1p0 $end
+$var wire 1 { p1p0cin $end
+$var wire 1 | p2g1 $end
+$var wire 1 } p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 ~ p2p1 $end
+$var wire 1 !" p2p1g0 $end
+$var wire 1 "" p2p1g0_p2p1p0cin $end
+$var wire 1 #" p2p1p0 $end
+$var wire 1 $" p2p1p0cin $end
+$var wire 1 %" p3g2 $end
+$var wire 1 &" p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 '" p3p2 $end
+$var wire 1 (" p3p2g1 $end
+$var wire 1 )" p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 *" p3p2p1 $end
+$var wire 1 +" p3p2p1g0 $end
+$var wire 1 ," p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 -" p3p2p1p0 $end
+$var wire 1 ." p3p2p1p0cin $end
+$var wire 4 /" temps [3:0] $end
+$var wire 4 0" sum [3:0] $end
+$var wire 4 1" p [3:0] $end
+$var wire 4 2" g [3:0] $end
+$var wire 1 3" cout $end
+$var wire 4 4" carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 5" i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 6" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 7" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 8" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 9" i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 :" a [3:0] $end
+$var wire 4 ;" b [3:0] $end
+$var wire 1 <" cin $end
+$var wire 1 =" p0cin $end
+$var wire 1 >" p1g0 $end
+$var wire 1 ?" p1g0_p1p0cin $end
+$var wire 1 @" p1p0 $end
+$var wire 1 A" p1p0cin $end
+$var wire 1 B" p2g1 $end
+$var wire 1 C" p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 D" p2p1 $end
+$var wire 1 E" p2p1g0 $end
+$var wire 1 F" p2p1g0_p2p1p0cin $end
+$var wire 1 G" p2p1p0 $end
+$var wire 1 H" p2p1p0cin $end
+$var wire 1 I" p3g2 $end
+$var wire 1 J" p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 K" p3p2 $end
+$var wire 1 L" p3p2g1 $end
+$var wire 1 M" p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 N" p3p2p1 $end
+$var wire 1 O" p3p2p1g0 $end
+$var wire 1 P" p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 Q" p3p2p1p0 $end
+$var wire 1 R" p3p2p1p0cin $end
+$var wire 4 S" temps [3:0] $end
+$var wire 4 T" sum [3:0] $end
+$var wire 4 U" p [3:0] $end
+$var wire 4 V" g [3:0] $end
+$var wire 1 W" cout $end
+$var wire 4 X" carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 Y" i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 Z" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 [" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 \" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[4] $end
+$var parameter 4 ]" i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 ^" a [3:0] $end
+$var wire 4 _" b [3:0] $end
+$var wire 1 `" cin $end
+$var wire 1 a" p0cin $end
+$var wire 1 b" p1g0 $end
+$var wire 1 c" p1g0_p1p0cin $end
+$var wire 1 d" p1p0 $end
+$var wire 1 e" p1p0cin $end
+$var wire 1 f" p2g1 $end
+$var wire 1 g" p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 h" p2p1 $end
+$var wire 1 i" p2p1g0 $end
+$var wire 1 j" p2p1g0_p2p1p0cin $end
+$var wire 1 k" p2p1p0 $end
+$var wire 1 l" p2p1p0cin $end
+$var wire 1 m" p3g2 $end
+$var wire 1 n" p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 o" p3p2 $end
+$var wire 1 p" p3p2g1 $end
+$var wire 1 q" p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 r" p3p2p1 $end
+$var wire 1 s" p3p2p1g0 $end
+$var wire 1 t" p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 u" p3p2p1p0 $end
+$var wire 1 v" p3p2p1p0cin $end
+$var wire 4 w" temps [3:0] $end
+$var wire 4 x" sum [3:0] $end
+$var wire 4 y" p [3:0] $end
+$var wire 4 z" g [3:0] $end
+$var wire 1 {" cout $end
+$var wire 4 |" carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 }" i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 ~" i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 !# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 "# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[5] $end
+$var parameter 4 ## i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 $# a [3:0] $end
+$var wire 4 %# b [3:0] $end
+$var wire 1 &# cin $end
+$var wire 1 '# p0cin $end
+$var wire 1 (# p1g0 $end
+$var wire 1 )# p1g0_p1p0cin $end
+$var wire 1 *# p1p0 $end
+$var wire 1 +# p1p0cin $end
+$var wire 1 ,# p2g1 $end
+$var wire 1 -# p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 .# p2p1 $end
+$var wire 1 /# p2p1g0 $end
+$var wire 1 0# p2p1g0_p2p1p0cin $end
+$var wire 1 1# p2p1p0 $end
+$var wire 1 2# p2p1p0cin $end
+$var wire 1 3# p3g2 $end
+$var wire 1 4# p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 5# p3p2 $end
+$var wire 1 6# p3p2g1 $end
+$var wire 1 7# p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 8# p3p2p1 $end
+$var wire 1 9# p3p2p1g0 $end
+$var wire 1 :# p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 ;# p3p2p1p0 $end
+$var wire 1 <# p3p2p1p0cin $end
+$var wire 4 =# temps [3:0] $end
+$var wire 4 ># sum [3:0] $end
+$var wire 4 ?# p [3:0] $end
+$var wire 4 @# g [3:0] $end
+$var wire 1 A# cout $end
+$var wire 4 B# carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 C# i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 D# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 E# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 F# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[6] $end
+$var parameter 4 G# i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 H# a [3:0] $end
+$var wire 4 I# b [3:0] $end
+$var wire 1 J# cin $end
+$var wire 1 K# p0cin $end
+$var wire 1 L# p1g0 $end
+$var wire 1 M# p1g0_p1p0cin $end
+$var wire 1 N# p1p0 $end
+$var wire 1 O# p1p0cin $end
+$var wire 1 P# p2g1 $end
+$var wire 1 Q# p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 R# p2p1 $end
+$var wire 1 S# p2p1g0 $end
+$var wire 1 T# p2p1g0_p2p1p0cin $end
+$var wire 1 U# p2p1p0 $end
+$var wire 1 V# p2p1p0cin $end
+$var wire 1 W# p3g2 $end
+$var wire 1 X# p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 Y# p3p2 $end
+$var wire 1 Z# p3p2g1 $end
+$var wire 1 [# p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 \# p3p2p1 $end
+$var wire 1 ]# p3p2p1g0 $end
+$var wire 1 ^# p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 _# p3p2p1p0 $end
+$var wire 1 `# p3p2p1p0cin $end
+$var wire 4 a# temps [3:0] $end
+$var wire 4 b# sum [3:0] $end
+$var wire 4 c# p [3:0] $end
+$var wire 4 d# g [3:0] $end
+$var wire 1 e# cout $end
+$var wire 4 f# carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 g# i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 h# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 i# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 j# i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[7] $end
+$var parameter 4 k# i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 l# a [3:0] $end
+$var wire 4 m# b [3:0] $end
+$var wire 1 n# cin $end
+$var wire 1 o# p0cin $end
+$var wire 1 p# p1g0 $end
+$var wire 1 q# p1g0_p1p0cin $end
+$var wire 1 r# p1p0 $end
+$var wire 1 s# p1p0cin $end
+$var wire 1 t# p2g1 $end
+$var wire 1 u# p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 v# p2p1 $end
+$var wire 1 w# p2p1g0 $end
+$var wire 1 x# p2p1g0_p2p1p0cin $end
+$var wire 1 y# p2p1p0 $end
+$var wire 1 z# p2p1p0cin $end
+$var wire 1 {# p3g2 $end
+$var wire 1 |# p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 }# p3p2 $end
+$var wire 1 ~# p3p2g1 $end
+$var wire 1 !$ p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 "$ p3p2p1 $end
+$var wire 1 #$ p3p2p1g0 $end
+$var wire 1 $$ p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 %$ p3p2p1p0 $end
+$var wire 1 &$ p3p2p1p0cin $end
+$var wire 4 '$ temps [3:0] $end
+$var wire 4 ($ sum [3:0] $end
+$var wire 4 )$ p [3:0] $end
+$var wire 4 *$ g [3:0] $end
+$var wire 1 +$ cout $end
+$var wire 4 ,$ carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 -$ i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 .$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 /$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 0$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[8] $end
+$var parameter 5 1$ i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 2$ a [3:0] $end
+$var wire 4 3$ b [3:0] $end
+$var wire 1 4$ cin $end
+$var wire 1 5$ p0cin $end
+$var wire 1 6$ p1g0 $end
+$var wire 1 7$ p1g0_p1p0cin $end
+$var wire 1 8$ p1p0 $end
+$var wire 1 9$ p1p0cin $end
+$var wire 1 :$ p2g1 $end
+$var wire 1 ;$ p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 <$ p2p1 $end
+$var wire 1 =$ p2p1g0 $end
+$var wire 1 >$ p2p1g0_p2p1p0cin $end
+$var wire 1 ?$ p2p1p0 $end
+$var wire 1 @$ p2p1p0cin $end
+$var wire 1 A$ p3g2 $end
+$var wire 1 B$ p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 C$ p3p2 $end
+$var wire 1 D$ p3p2g1 $end
+$var wire 1 E$ p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 F$ p3p2p1 $end
+$var wire 1 G$ p3p2p1g0 $end
+$var wire 1 H$ p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 I$ p3p2p1p0 $end
+$var wire 1 J$ p3p2p1p0cin $end
+$var wire 4 K$ temps [3:0] $end
+$var wire 4 L$ sum [3:0] $end
+$var wire 4 M$ p [3:0] $end
+$var wire 4 N$ g [3:0] $end
+$var wire 1 O$ cout $end
+$var wire 4 P$ carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 Q$ i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 R$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 S$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 T$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[9] $end
+$var parameter 5 U$ i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 V$ a [3:0] $end
+$var wire 4 W$ b [3:0] $end
+$var wire 1 X$ cin $end
+$var wire 1 Y$ p0cin $end
+$var wire 1 Z$ p1g0 $end
+$var wire 1 [$ p1g0_p1p0cin $end
+$var wire 1 \$ p1p0 $end
+$var wire 1 ]$ p1p0cin $end
+$var wire 1 ^$ p2g1 $end
+$var wire 1 _$ p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 `$ p2p1 $end
+$var wire 1 a$ p2p1g0 $end
+$var wire 1 b$ p2p1g0_p2p1p0cin $end
+$var wire 1 c$ p2p1p0 $end
+$var wire 1 d$ p2p1p0cin $end
+$var wire 1 e$ p3g2 $end
+$var wire 1 f$ p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 g$ p3p2 $end
+$var wire 1 h$ p3p2g1 $end
+$var wire 1 i$ p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 j$ p3p2p1 $end
+$var wire 1 k$ p3p2p1g0 $end
+$var wire 1 l$ p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 m$ p3p2p1p0 $end
+$var wire 1 n$ p3p2p1p0cin $end
+$var wire 4 o$ temps [3:0] $end
+$var wire 4 p$ sum [3:0] $end
+$var wire 4 q$ p [3:0] $end
+$var wire 4 r$ g [3:0] $end
+$var wire 1 s$ cout $end
+$var wire 4 t$ carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 u$ i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 v$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 w$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 x$ i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[10] $end
+$var parameter 5 y$ i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 z$ a [3:0] $end
+$var wire 4 {$ b [3:0] $end
+$var wire 1 |$ cin $end
+$var wire 1 }$ p0cin $end
+$var wire 1 ~$ p1g0 $end
+$var wire 1 !% p1g0_p1p0cin $end
+$var wire 1 "% p1p0 $end
+$var wire 1 #% p1p0cin $end
+$var wire 1 $% p2g1 $end
+$var wire 1 %% p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 &% p2p1 $end
+$var wire 1 '% p2p1g0 $end
+$var wire 1 (% p2p1g0_p2p1p0cin $end
+$var wire 1 )% p2p1p0 $end
+$var wire 1 *% p2p1p0cin $end
+$var wire 1 +% p3g2 $end
+$var wire 1 ,% p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 -% p3p2 $end
+$var wire 1 .% p3p2g1 $end
+$var wire 1 /% p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 0% p3p2p1 $end
+$var wire 1 1% p3p2p1g0 $end
+$var wire 1 2% p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 3% p3p2p1p0 $end
+$var wire 1 4% p3p2p1p0cin $end
+$var wire 4 5% temps [3:0] $end
+$var wire 4 6% sum [3:0] $end
+$var wire 4 7% p [3:0] $end
+$var wire 4 8% g [3:0] $end
+$var wire 1 9% cout $end
+$var wire 4 :% carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 ;% i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 <% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 =% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 >% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[11] $end
+$var parameter 5 ?% i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 @% a [3:0] $end
+$var wire 4 A% b [3:0] $end
+$var wire 1 B% cin $end
+$var wire 1 C% p0cin $end
+$var wire 1 D% p1g0 $end
+$var wire 1 E% p1g0_p1p0cin $end
+$var wire 1 F% p1p0 $end
+$var wire 1 G% p1p0cin $end
+$var wire 1 H% p2g1 $end
+$var wire 1 I% p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 J% p2p1 $end
+$var wire 1 K% p2p1g0 $end
+$var wire 1 L% p2p1g0_p2p1p0cin $end
+$var wire 1 M% p2p1p0 $end
+$var wire 1 N% p2p1p0cin $end
+$var wire 1 O% p3g2 $end
+$var wire 1 P% p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 Q% p3p2 $end
+$var wire 1 R% p3p2g1 $end
+$var wire 1 S% p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 T% p3p2p1 $end
+$var wire 1 U% p3p2p1g0 $end
+$var wire 1 V% p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 W% p3p2p1p0 $end
+$var wire 1 X% p3p2p1p0cin $end
+$var wire 4 Y% temps [3:0] $end
+$var wire 4 Z% sum [3:0] $end
+$var wire 4 [% p [3:0] $end
+$var wire 4 \% g [3:0] $end
+$var wire 1 ]% cout $end
+$var wire 4 ^% carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 _% i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 `% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 a% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 b% i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[12] $end
+$var parameter 5 c% i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 d% a [3:0] $end
+$var wire 4 e% b [3:0] $end
+$var wire 1 f% cin $end
+$var wire 1 g% p0cin $end
+$var wire 1 h% p1g0 $end
+$var wire 1 i% p1g0_p1p0cin $end
+$var wire 1 j% p1p0 $end
+$var wire 1 k% p1p0cin $end
+$var wire 1 l% p2g1 $end
+$var wire 1 m% p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 n% p2p1 $end
+$var wire 1 o% p2p1g0 $end
+$var wire 1 p% p2p1g0_p2p1p0cin $end
+$var wire 1 q% p2p1p0 $end
+$var wire 1 r% p2p1p0cin $end
+$var wire 1 s% p3g2 $end
+$var wire 1 t% p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 u% p3p2 $end
+$var wire 1 v% p3p2g1 $end
+$var wire 1 w% p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 x% p3p2p1 $end
+$var wire 1 y% p3p2p1g0 $end
+$var wire 1 z% p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 {% p3p2p1p0 $end
+$var wire 1 |% p3p2p1p0cin $end
+$var wire 4 }% temps [3:0] $end
+$var wire 4 ~% sum [3:0] $end
+$var wire 4 !& p [3:0] $end
+$var wire 4 "& g [3:0] $end
+$var wire 1 #& cout $end
+$var wire 4 $& carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 %& i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 && i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 '& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 (& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[13] $end
+$var parameter 5 )& i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 *& a [3:0] $end
+$var wire 4 +& b [3:0] $end
+$var wire 1 ,& cin $end
+$var wire 1 -& p0cin $end
+$var wire 1 .& p1g0 $end
+$var wire 1 /& p1g0_p1p0cin $end
+$var wire 1 0& p1p0 $end
+$var wire 1 1& p1p0cin $end
+$var wire 1 2& p2g1 $end
+$var wire 1 3& p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 4& p2p1 $end
+$var wire 1 5& p2p1g0 $end
+$var wire 1 6& p2p1g0_p2p1p0cin $end
+$var wire 1 7& p2p1p0 $end
+$var wire 1 8& p2p1p0cin $end
+$var wire 1 9& p3g2 $end
+$var wire 1 :& p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 ;& p3p2 $end
+$var wire 1 <& p3p2g1 $end
+$var wire 1 =& p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 >& p3p2p1 $end
+$var wire 1 ?& p3p2p1g0 $end
+$var wire 1 @& p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 A& p3p2p1p0 $end
+$var wire 1 B& p3p2p1p0cin $end
+$var wire 4 C& temps [3:0] $end
+$var wire 4 D& sum [3:0] $end
+$var wire 4 E& p [3:0] $end
+$var wire 4 F& g [3:0] $end
+$var wire 1 G& cout $end
+$var wire 4 H& carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 I& i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 J& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 K& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 L& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[14] $end
+$var parameter 5 M& i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 N& a [3:0] $end
+$var wire 4 O& b [3:0] $end
+$var wire 1 P& cin $end
+$var wire 1 Q& p0cin $end
+$var wire 1 R& p1g0 $end
+$var wire 1 S& p1g0_p1p0cin $end
+$var wire 1 T& p1p0 $end
+$var wire 1 U& p1p0cin $end
+$var wire 1 V& p2g1 $end
+$var wire 1 W& p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 X& p2p1 $end
+$var wire 1 Y& p2p1g0 $end
+$var wire 1 Z& p2p1g0_p2p1p0cin $end
+$var wire 1 [& p2p1p0 $end
+$var wire 1 \& p2p1p0cin $end
+$var wire 1 ]& p3g2 $end
+$var wire 1 ^& p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 _& p3p2 $end
+$var wire 1 `& p3p2g1 $end
+$var wire 1 a& p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 b& p3p2p1 $end
+$var wire 1 c& p3p2p1g0 $end
+$var wire 1 d& p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 e& p3p2p1p0 $end
+$var wire 1 f& p3p2p1p0cin $end
+$var wire 4 g& temps [3:0] $end
+$var wire 4 h& sum [3:0] $end
+$var wire 4 i& p [3:0] $end
+$var wire 4 j& g [3:0] $end
+$var wire 1 k& cout $end
+$var wire 4 l& carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 m& i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 n& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 o& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 p& i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin myloop[15] $end
+$var parameter 5 q& i $end
+$scope begin genblk1 $end
+$scope module fadd $end
+$var wire 4 r& a [3:0] $end
+$var wire 4 s& b [3:0] $end
+$var wire 1 t& cin $end
+$var wire 1 u& p0cin $end
+$var wire 1 v& p1g0 $end
+$var wire 1 w& p1g0_p1p0cin $end
+$var wire 1 x& p1p0 $end
+$var wire 1 y& p1p0cin $end
+$var wire 1 z& p2g1 $end
+$var wire 1 {& p2g1_p2p1g0_p2p1p0cin $end
+$var wire 1 |& p2p1 $end
+$var wire 1 }& p2p1g0 $end
+$var wire 1 ~& p2p1g0_p2p1p0cin $end
+$var wire 1 !' p2p1p0 $end
+$var wire 1 "' p2p1p0cin $end
+$var wire 1 #' p3g2 $end
+$var wire 1 $' p3g2_p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 %' p3p2 $end
+$var wire 1 &' p3p2g1 $end
+$var wire 1 '' p3p2g1_p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 (' p3p2p1 $end
+$var wire 1 )' p3p2p1g0 $end
+$var wire 1 *' p3p2p1g0_p3p2p1p0cin $end
+$var wire 1 +' p3p2p1p0 $end
+$var wire 1 ,' p3p2p1p0cin $end
+$var wire 4 -' temps [3:0] $end
+$var wire 4 .' sum [3:0] $end
+$var wire 4 /' p [3:0] $end
+$var wire 4 0' g [3:0] $end
+$var wire 1 1' cout $end
+$var wire 4 2' carry [3:0] $end
+$scope begin myloop[0] $end
+$var parameter 2 3' i $end
+$scope begin ifstatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[1] $end
+$var parameter 2 4' i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[2] $end
+$var parameter 3 5' i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$scope begin myloop[3] $end
+$var parameter 3 6' i $end
+$scope begin elsestatement $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope task run_test $end
+$var reg 64 7' expected [63:0] $end
+$var reg 64 8' test_a [63:0] $end
+$var reg 64 9' test_b [63:0] $end
+$var reg 5 :' test_number [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b11 6'
+b10 5'
+b1 4'
+b0 3'
+b1111 q&
+b11 p&
+b10 o&
+b1 n&
+b0 m&
+b1110 M&
+b11 L&
+b10 K&
+b1 J&
+b0 I&
+b1101 )&
+b11 (&
+b10 '&
+b1 &&
+b0 %&
+b1100 c%
+b11 b%
+b10 a%
+b1 `%
+b0 _%
+b1011 ?%
+b11 >%
+b10 =%
+b1 <%
+b0 ;%
+b1010 y$
+b11 x$
+b10 w$
+b1 v$
+b0 u$
+b1001 U$
+b11 T$
+b10 S$
+b1 R$
+b0 Q$
+b1000 1$
+b11 0$
+b10 /$
+b1 .$
+b0 -$
+b111 k#
+b11 j#
+b10 i#
+b1 h#
+b0 g#
+b110 G#
+b11 F#
+b10 E#
+b1 D#
+b0 C#
+b101 ##
+b11 "#
+b10 !#
+b1 ~"
+b0 }"
+b100 ]"
+b11 \"
+b10 ["
+b1 Z"
+b0 Y"
+b11 9"
+b11 8"
+b10 7"
+b1 6"
+b0 5"
+b10 s
+b11 r
+b10 q
+b1 p
+b0 o
+b1 O
+b11 N
+b10 M
+b1 L
+b0 K
+b0 +
+$end
+#0
+$dumpvars
+b1 :'
+b100 9'
+b0 8'
+b100 7'
+b0 2'
+01'
+b0 0'
+b0 /'
+b0 .'
+b0 -'
+0,'
+0+'
+0*'
+0)'
+0('
+0''
+0&'
+0%'
+0$'
+0#'
+0"'
+0!'
+0~&
+0}&
+0|&
+0{&
+0z&
+0y&
+0x&
+0w&
+0v&
+0u&
+0t&
+b0 s&
+b0 r&
+b0 l&
+0k&
+b0 j&
+b0 i&
+b0 h&
+b0 g&
+0f&
+0e&
+0d&
+0c&
+0b&
+0a&
+0`&
+0_&
+0^&
+0]&
+0\&
+0[&
+0Z&
+0Y&
+0X&
+0W&
+0V&
+0U&
+0T&
+0S&
+0R&
+0Q&
+0P&
+b0 O&
+b0 N&
+b0 H&
+0G&
+b0 F&
+b0 E&
+b0 D&
+b0 C&
+0B&
+0A&
+0@&
+0?&
+0>&
+0=&
+0<&
+0;&
+0:&
+09&
+08&
+07&
+06&
+05&
+04&
+03&
+02&
+01&
+00&
+0/&
+0.&
+0-&
+0,&
+b0 +&
+b0 *&
+b0 $&
+0#&
+b0 "&
+b0 !&
+b0 ~%
+b0 }%
+0|%
+0{%
+0z%
+0y%
+0x%
+0w%
+0v%
+0u%
+0t%
+0s%
+0r%
+0q%
+0p%
+0o%
+0n%
+0m%
+0l%
+0k%
+0j%
+0i%
+0h%
+0g%
+0f%
+b0 e%
+b0 d%
+b0 ^%
+0]%
+b0 \%
+b0 [%
+b0 Z%
+b0 Y%
+0X%
+0W%
+0V%
+0U%
+0T%
+0S%
+0R%
+0Q%
+0P%
+0O%
+0N%
+0M%
+0L%
+0K%
+0J%
+0I%
+0H%
+0G%
+0F%
+0E%
+0D%
+0C%
+0B%
+b0 A%
+b0 @%
+b0 :%
+09%
+b0 8%
+b0 7%
+b0 6%
+b0 5%
+04%
+03%
+02%
+01%
+00%
+0/%
+0.%
+0-%
+0,%
+0+%
+0*%
+0)%
+0(%
+0'%
+0&%
+0%%
+0$%
+0#%
+0"%
+0!%
+0~$
+0}$
+0|$
+b0 {$
+b0 z$
+b0 t$
+0s$
+b0 r$
+b0 q$
+b0 p$
+b0 o$
+0n$
+0m$
+0l$
+0k$
+0j$
+0i$
+0h$
+0g$
+0f$
+0e$
+0d$
+0c$
+0b$
+0a$
+0`$
+0_$
+0^$
+0]$
+0\$
+0[$
+0Z$
+0Y$
+0X$
+b0 W$
+b0 V$
+b0 P$
+0O$
+b0 N$
+b0 M$
+b0 L$
+b0 K$
+0J$
+0I$
+0H$
+0G$
+0F$
+0E$
+0D$
+0C$
+0B$
+0A$
+0@$
+0?$
+0>$
+0=$
+0<$
+0;$
+0:$
+09$
+08$
+07$
+06$
+05$
+04$
+b0 3$
+b0 2$
+b0 ,$
+0+$
+b0 *$
+b0 )$
+b0 ($
+b0 '$
+0&$
+0%$
+0$$
+0#$
+0"$
+0!$
+0~#
+0}#
+0|#
+0{#
+0z#
+0y#
+0x#
+0w#
+0v#
+0u#
+0t#
+0s#
+0r#
+0q#
+0p#
+0o#
+0n#
+b0 m#
+b0 l#
+b0 f#
+0e#
+b0 d#
+b0 c#
+b0 b#
+b0 a#
+0`#
+0_#
+0^#
+0]#
+0\#
+0[#
+0Z#
+0Y#
+0X#
+0W#
+0V#
+0U#
+0T#
+0S#
+0R#
+0Q#
+0P#
+0O#
+0N#
+0M#
+0L#
+0K#
+0J#
+b0 I#
+b0 H#
+b0 B#
+0A#
+b0 @#
+b0 ?#
+b0 >#
+b0 =#
+0<#
+0;#
+0:#
+09#
+08#
+07#
+06#
+05#
+04#
+03#
+02#
+01#
+00#
+0/#
+0.#
+0-#
+0,#
+0+#
+0*#
+0)#
+0(#
+0'#
+0&#
+b0 %#
+b0 $#
+b0 |"
+0{"
+b0 z"
+b0 y"
+b0 x"
+b0 w"
+0v"
+0u"
+0t"
+0s"
+0r"
+0q"
+0p"
+0o"
+0n"
+0m"
+0l"
+0k"
+0j"
+0i"
+0h"
+0g"
+0f"
+0e"
+0d"
+0c"
+0b"
+0a"
+0`"
+b0 _"
+b0 ^"
+b0 X"
+0W"
+b0 V"
+b0 U"
+b0 T"
+b0 S"
+0R"
+0Q"
+0P"
+0O"
+0N"
+0M"
+0L"
+0K"
+0J"
+0I"
+0H"
+0G"
+0F"
+0E"
+0D"
+0C"
+0B"
+0A"
+0@"
+0?"
+0>"
+0="
+0<"
+b0 ;"
+b0 :"
+b0 4"
+03"
+b0 2"
+b0 1"
+b0 0"
+b0 /"
+0."
+0-"
+0,"
+0+"
+0*"
+0)"
+0("
+0'"
+0&"
+0%"
+0$"
+0#"
+0""
+0!"
+0~
+0}
+0|
+0{
+0z
+0y
+0x
+0w
+0v
+b0 u
+b0 t
+b0 n
+0m
+b0 l
+b0 k
+b0 j
+b0 i
+0h
+0g
+0f
+0e
+0d
+0c
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+b0 Q
+b0 P
+b0 J
+0I
+b0 H
+b100 G
+b100 F
+b100 E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+0;
+0:
+09
+08
+07
+06
+05
+04
+03
+02
+01
+00
+0/
+0.
+b100 -
+b0 ,
+b0 *
+b100 )
+b100 (
+b0 '
+b100 &
+b0 %
+b10000000000000000000000000000011 $
+b100 #
+b0 "
+b100 !
+$end
+#10000
+b100 J
+b1000 F
+1Z
+b1101000 !
+b1101000 )
+b110 j
+b100 H
+b0 E
+b110 k
+b110 i
+b100 ,
+b110 P
+b1100100 "
+b1100100 '
+b1101000 7'
+b1100100 8'
+b10 :'
+b1 %
+#20000
+11'
+1$'
+1{&
+1''
+b1111 2'
+1w&
+1~&
+1*'
+1u&
+1y&
+1"'
+1,'
+1t&
+1k&
+1^&
+1W&
+1a&
+b1111 l&
+1S&
+1Z&
+1d&
+1Q&
+1U&
+1\&
+1f&
+1P&
+1G&
+1:&
+13&
+1=&
+b1111 H&
+1/&
+16&
+1@&
+1-&
+11&
+18&
+1B&
+1,&
+1#&
+1t%
+1m%
+1w%
+b1111 $&
+1i%
+1p%
+1z%
+1g%
+1k%
+1r%
+1|%
+1f%
+1]%
+1P%
+1I%
+1S%
+b1111 ^%
+1E%
+1L%
+1V%
+1C%
+1G%
+1N%
+1X%
+1B%
+19%
+1,%
+1%%
+1/%
+b1111 :%
+1!%
+1(%
+12%
+1}$
+1#%
+1*%
+14%
+1|$
+1s$
+1f$
+1_$
+1i$
+b1111 t$
+1[$
+1b$
+1l$
+1Y$
+1]$
+1d$
+1n$
+1X$
+1O$
+1B$
+1;$
+1E$
+b1111 P$
+17$
+1>$
+1H$
+15$
+19$
+1@$
+1J$
+14$
+1+$
+1|#
+1u#
+1!$
+b1111 ,$
+1q#
+1x#
+1$$
+1o#
+1s#
+1z#
+1&$
+1n#
+1e#
+1X#
+1Q#
+1[#
+b1111 f#
+1M#
+1T#
+1^#
+1K#
+1O#
+1V#
+1`#
+1J#
+1A#
+14#
+1-#
+17#
+b1111 B#
+1)#
+10#
+1:#
+1'#
+1+#
+12#
+1<#
+1&#
+1{"
+1n"
+1g"
+1q"
+b1111 |"
+1c"
+1j"
+1t"
+1a"
+1e"
+1l"
+1v"
+1`"
+1W"
+1J"
+1C"
+1M"
+b1111 X"
+1?"
+1F"
+1P"
+1="
+1A"
+1H"
+1R"
+1<"
+13"
+1&"
+1}
+1)"
+b1111 4"
+1y
+1""
+1,"
+1w
+1{
+1$"
+1."
+1v
+b1111111111111110 *
+1m
+1`
+1c
+1f
+1e
+1g
+1Y
+1d
+1U
+1\
+b0 J
+1=
+b1100 F
+1a
+b0 j
+1#"
+1-"
+1z
+1*"
+1~
+1'"
+b0 0"
+1G"
+1Q"
+1@"
+1N"
+1D"
+1K"
+b0 T"
+1k"
+1u"
+1d"
+1r"
+1h"
+1o"
+b0 x"
+11#
+1;#
+1*#
+18#
+1.#
+15#
+b0 >#
+1U#
+1_#
+1N#
+1\#
+1R#
+1Y#
+b0 b#
+1y#
+1%$
+1r#
+1"$
+1v#
+1}#
+b0 ($
+1?$
+1I$
+18$
+1F$
+1<$
+1C$
+b0 L$
+1c$
+1m$
+1\$
+1j$
+1`$
+1g$
+b0 p$
+1)%
+13%
+1"%
+10%
+1&%
+1-%
+b0 6%
+1M%
+1W%
+1F%
+1T%
+1J%
+1Q%
+b0 Z%
+1q%
+1{%
+1j%
+1x%
+1n%
+1u%
+b0 ~%
+17&
+1A&
+10&
+1>&
+14&
+1;&
+b0 D&
+1[&
+1e&
+1T&
+1b&
+1X&
+1_&
+b0 h&
+1!'
+1+'
+1x&
+1('
+1|&
+1%'
+b1100 !
+b1100 )
+b0 .'
+1V
+1]
+b1111 n
+1T
+1[
+b0 H
+b1100 G
+b1100 E
+b1110 i
+b1111 1"
+b1111 /"
+b1111 U"
+b1111 S"
+b1111 y"
+b1111 w"
+b1111 ?#
+b1111 =#
+b1111 c#
+b1111 a#
+b1111 )$
+b1111 '$
+b1111 M$
+b1111 K$
+b1111 q$
+b1111 o$
+b1111 7%
+b1111 5%
+b1111 [%
+b1111 Y%
+b1111 !&
+b1111 }%
+b1111 E&
+b1111 C&
+b1111 i&
+b1111 g&
+b1111 /'
+b1111 -'
+b1111 k
+b1 l
+b1000 -
+b1111 Q
+b1111 u
+b1111 ;"
+b1111 _"
+b1111 %#
+b1111 I#
+b1111 m#
+b1111 3$
+b1111 W$
+b1111 {$
+b1111 A%
+b1111 e%
+b1111 +&
+b1111 O&
+b1111 s&
+b1 P
+b1111111111111111111111111111111111111111111111111111111111111000 #
+b1111111111111111111111111111111111111111111111111111111111111000 (
+b10100 "
+b10100 '
+b1100 7'
+b1111111111111111111111111111111111111111111111111111111111111000 9'
+b10100 8'
+b11 :'
+b10 %
+#30000
+11'
+1$'
+1{&
+1''
+b1111 2'
+1w&
+1~&
+1*'
+1u&
+1y&
+1"'
+1,'
+b0 .'
+1t&
+1k&
+1^&
+1W&
+1a&
+b1111 l&
+1S&
+1Z&
+1d&
+1Q&
+1U&
+1\&
+1f&
+b0 h&
+1P&
+1G&
+1:&
+13&
+1=&
+b1111 H&
+1/&
+16&
+1@&
+1-&
+11&
+18&
+1B&
+b0 D&
+1,&
+1#&
+1t%
+1m%
+1w%
+b1111 $&
+1i%
+1p%
+1z%
+1g%
+1k%
+1r%
+1|%
+b0 ~%
+1f%
+1]%
+1P%
+1I%
+1S%
+b1111 ^%
+1E%
+1L%
+1V%
+1C%
+1G%
+1N%
+1X%
+b0 Z%
+1B%
+19%
+1,%
+1%%
+1/%
+b1111 :%
+1!%
+1(%
+12%
+1}$
+1#%
+1*%
+14%
+b0 6%
+1|$
+1s$
+1f$
+1_$
+1i$
+b1111 t$
+1[$
+1b$
+1l$
+1Y$
+1]$
+1d$
+1n$
+b0 p$
+1X$
+1O$
+1B$
+1;$
+1E$
+b1111 P$
+17$
+1>$
+1H$
+15$
+19$
+1@$
+1J$
+b0 L$
+14$
+1+$
+1|#
+1u#
+1!$
+b1111 ,$
+1q#
+1x#
+1$$
+1o#
+1s#
+1z#
+1&$
+b0 ($
+1n#
+1e#
+1X#
+1Q#
+1[#
+b1111 f#
+1M#
+1T#
+1^#
+1K#
+1O#
+1V#
+1`#
+b0 b#
+1J#
+1A#
+14#
+1-#
+17#
+b1111 B#
+1)#
+10#
+1:#
+1'#
+1+#
+12#
+1<#
+b0 >#
+1&#
+1{"
+1n"
+1g"
+1q"
+b1111 |"
+1c"
+1j"
+1t"
+1a"
+1e"
+1l"
+1v"
+b0 x"
+1`"
+1W"
+1J"
+1C"
+1M"
+b1111 X"
+1?"
+1F"
+1P"
+1="
+1A"
+1H"
+1R"
+b0 T"
+1<"
+13"
+1&"
+1}
+1)"
+b1111 4"
+1y
+1""
+1,"
+1w
+1{
+1$"
+1."
+b0 0"
+1S
+1W
+1^
+1h
+1v
+1R
+1m
+b1111111111111111 *
+1I
+1`
+1<
+1Y
+1c
+15
+1?
+1U
+1\
+1f
+18
+1B
+11
+b1111 n
+0T
+0[
+0e
+b0 j
+19
+1C
+b1111 J
+17
+1A
+10
+12
+16
+1@
+b0 !
+b0 )
+b0 F
+b0 l
+b1111 i
+b1 H
+b1111 G
+b1110 E
+b1 -
+b0 Q
+b0 u
+b0 ;"
+b0 _"
+b0 %#
+b0 I#
+b0 m#
+b0 3$
+b0 W$
+b0 {$
+b0 A%
+b0 e%
+b0 +&
+b0 O&
+b0 s&
+b1111 ,
+b1111 P
+b1111 t
+b1111 :"
+b1111 ^"
+b1111 $#
+b1111 H#
+b1111 l#
+b1111 2$
+b1111 V$
+b1111 z$
+b1111 @%
+b1111 d%
+b1111 *&
+b1111 N&
+b1111 r&
+b1 #
+b1 (
+b1111111111111111111111111111111111111111111111111111111111111111 "
+b1111111111111111111111111111111111111111111111111111111111111111 '
+b0 7'
+b1 9'
+b1111111111111111111111111111111111111111111111111111111111111111 8'
+b100 :'
+b11 %
+#40000
+b100 %
+#50000

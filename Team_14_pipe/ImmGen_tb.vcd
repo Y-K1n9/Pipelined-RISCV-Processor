@@ -1,0 +1,72 @@
+$date
+	Sun Feb 22 19:35:04 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ImmGen_tb $end
+$var wire 64 ! immediate [63:0] $end
+$var reg 32 " Instruction [31:0] $end
+$var integer 32 # file_handle [31:0] $end
+$var integer 32 $ pass_count [31:0] $end
+$var integer 32 % total_tests [31:0] $end
+$scope module uut $end
+$var wire 32 & Instruction [31:0] $end
+$var reg 64 ' immediate [63:0] $end
+$upscope $end
+$scope task run_test $end
+$var reg 64 ( exp_immediate [63:0] $end
+$var reg 32 ) instr [31:0] $end
+$var reg 5 * test_number [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1 *
+b10100000000000010010011 )
+b101 (
+b101 '
+b10100000000000010010011 &
+b100 %
+b0 $
+b10000000000000000000000000000011 #
+b10100000000000010010011 "
+b101 !
+$end
+#10000
+b1111111111111111111111111111111111111111111111111111111111111111 !
+b1111111111111111111111111111111111111111111111111111111111111111 '
+b11111111111100000000000010010011 "
+b11111111111100000000000010010011 &
+b1111111111111111111111111111111111111111111111111111111111111111 (
+b11111111111100000000000010010011 )
+b10 *
+b1 $
+#20000
+b1000 !
+b1000 '
+b100010011010000100011 "
+b100010011010000100011 &
+b1000 (
+b100010011010000100011 )
+b11 *
+b10 $
+#30000
+b100 !
+b100 '
+b1000001000010001100011 "
+b1000001000010001100011 &
+b100 (
+b1000001000010001100011 )
+b100 *
+b11 $
+#40000
+b100 $
+#50000
