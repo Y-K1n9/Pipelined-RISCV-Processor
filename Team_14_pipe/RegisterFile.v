@@ -66,9 +66,15 @@ wire [63:0] outp[31:0];
 assign outp[0] = 64'b0;
 
 
-// reading:
-assign read_data1 = outp[read_reg1];
-assign read_data2 = outp[read_reg2];
+// reading: bypass write_data when writing to the same register (write-before-read)
+// This fixes the 3-cycle-ago hazard where the WB stage's synchronous write hasn't
+// physically committed to outp[] yet when the ID stage reads the same register.
+assign read_data1 = (reg_write_en && write_reg == read_reg1 && read_reg1 != 5'b0) ? write_data : outp[read_reg1];
+assign read_data2 = (reg_write_en && write_reg == read_reg2 && read_reg2 != 5'b0) ? write_data : outp[read_reg2];
+
+// // reading:
+// assign read_data1 = outp[read_reg1];
+// assign read_data2 = outp[read_reg2];
 
 
 // writing
