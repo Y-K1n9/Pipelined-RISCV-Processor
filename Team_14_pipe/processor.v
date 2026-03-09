@@ -13,6 +13,7 @@
 `include "equalityComparator.v"
 `include "ForwardingUnit.v"
 `include "HazardDetectionUnit.v"
+`include "BranchForwardingUnit.v"
 module processor(
     input clk, reset
 );
@@ -189,6 +190,9 @@ wire PCWrite, Bubble, IFIDEnable;
 
 HazardDetectionUnit HDU1(
     .IDEXMemRead(IDEXMemRead),
+    .IDEXRegWrite(IDEXRegWrite),
+    .EXMEMMemRead(EXMEMMemRead),
+    .EXMEMrd(EXMEMrd),
     .Instruction(Instruction), .IDEXIR(IDEXIR),
     .PCWrite(PCWrite), .IFIDEnable(IFIDEnable), .Bubble(Bubble)
 );
@@ -244,8 +248,28 @@ mux RegWriteBack(
     .out(write_back)
 );
 
+wire [1:0] ForwardCompA, ForwardCompB;
+wire [63:0] compA, compB;
+
+BranchForwardingUnit BFU1(
+    .EXMEMRegWrite(EXMEMRegWrite), .MEMWBRegWrite(MEMWBRegWrite),
+    .EXMEMrd(EXMEMrd), .MEMWBrd(MEMWBrd),
+    .IFIDrs1(Instruction[19:15]), .IFIDrs2(Instruction[24:20]),
+    .ForwardCompA(ForwardCompA), .ForwardCompB(ForwardCompB)
+);
+
+mux4x2 compMuxA(
+    .a(rs1), .b(write_back), .c(EXMEMALUResult),
+    .sel(ForwardCompA), .out(compA)
+);
+
+mux4x2 compMuxB(
+    .a(rs2), .b(write_back), .c(EXMEMALUResult),
+    .sel(ForwardCompB), .out(compB)
+);
+
 equalityComparator comp1(
-    .a(rs1), .b(rs2), .equal(rs1EqualRs2)
+    .a(compA), .b(compB), .equal(rs1EqualRs2)
 );
 
 
@@ -279,6 +303,10 @@ always@(*)begin
 
 end
 
+reg [4:0] IDEXrd;
+ // Always update (outside Bubble logic)
+  // Always use the actual rd value
+
 always@(posedge clk) begin
     if(!reset) begin
         // IF/ID
@@ -308,6 +336,7 @@ always@(posedge clk) begin
         IDEXrs2<=rs2;
         IDEXImm<=immediate;
         IDEXIR<=Instruction;
+        IDEXrd <= Instruction[11:7]; 
         IDEXrs1Addr<=Instruction[19:15];
         IDEXrs2Addr<=Instruction[24:20];
         // EX/MEM
@@ -318,7 +347,8 @@ always@(posedge clk) begin
         EXMEMRegWrite<=IDEXRegWrite;
         EXMEMrs2<=IDEXrs2;
         EXMEMrs2Addr<=IDEXrs2Addr;
-        EXMEMrd<=IDEXIR[11:7];
+        // EXMEMrd<=IDEXIR[11:7];
+        EXMEMrd <= IDEXrd;
         // MEM/WB
         MEMWBReadData<=read_data;
         MEMWBALUResult<=EXMEMALUResult;
@@ -328,8 +358,15 @@ always@(posedge clk) begin
     end
     else begin
        // initialize instr fields to noop.
-       IFIDIR<=32'h00000013;
-       IDEXIR<=32'h00000013;
+        IFIDIR<=32'h00000013;
+        IDEXIR<=32'h00000013;
+        IDEXRegWrite<=0;
+        IDEXMemRead<=0;
+        IDEXMemWrite<=0;
+        EXMEMRegWrite<=0;
+        EXMEMMemRead<=0;
+        EXMEMMemWrite<=0;
+        MEMWBRegWrite<=0;
     end
 end
 
