@@ -40,7 +40,7 @@
 % ── Header / Footer ──────────────────────────────────────────────────────
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{Team 14 --- Pipelined RISC-V Processor}
+\fancyhead[L]{Team 14 -- Pipelined RISC-V Processor}
 \fancyhead[R]{IPA Project Phase II Report}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -49,7 +49,7 @@
 \title{%
     \vspace{-1cm}
     \textbf{Introduction to Processor Architecture}\\[6pt]
-    \Large Pipelined RISC-V Processor --- Phase II Report\\[4pt]
+    \Large Pipelined RISC-V Processor -- Phase II Report\\[4pt]
     \large Team 14
 }
 \author{
@@ -72,29 +72,29 @@
 \section{Overview}
 
 This report covers the additions made on top of the sequential RISC-V processor to convert it into a 5-stage pipelined processor.
-The base datapath blocks (ALU, Control Unit, Register File, Data Memory, Instruction Memory, Immediate Generator, ALU Control, Adder, ShiftLeft1, MUX) remain functionally identical to the sequential design and are not re-described here.
+The base datapath blocks (ALU, Control Unit, Register File, Data Memory, Instruction Memory, Immediate Generator, ALU Control, Adder, ShiftLeft1, MUX) remain functionally identical to the sequential design.
 
 \subsection{What Changed from the Sequential Design}
 The following were added or modified:
 \begin{enumerate}
     \item \textbf{Four sets of pipeline registers} between the five stages (IF/ID, ID/EX, EX/MEM, MEM/WB).
-    \item \textbf{Forwarding Unit} --- resolves data hazards by bypassing results from later stages back to the EX stage ALU inputs.
-    \item \textbf{Hazard Detection Unit} --- detects load-use and branch-related hazards that cannot be resolved by forwarding alone; stalls the pipeline by inserting bubbles.
-    \item \textbf{Branch resolution moved to ID stage} --- a dedicated \texttt{equalityComparator} resolves \texttt{beq} in the Decode stage (rather than the EX stage), reducing the branch penalty from 2 flush cycles to 1.
-    \item \textbf{Branch Forwarding Unit} --- provides forwarding paths to the branch comparator so that the ID-stage comparison uses up-to-date values.
-    \item \textbf{Store-data forwarding (bonus)} --- a special forwarding path for store instructions whose data register depends on a value being written back simultaneously.
-    \item \textbf{4-to-1 MUX} (\texttt{mux4x2.v}) --- new multiplexer module used for forwarding selection (4 instances).
-    \item \textbf{PC enable signal} --- the PC module now has an \texttt{enable} input (\texttt{PCWrite}) that can freeze the PC during stalls.
+    \item \textbf{Forwarding Unit} -- resolves data hazards by bypassing results from later stages back to the EX stage ALU inputs.
+    \item \textbf{Hazard Detection Unit} -- detects load-use and branch-related hazards that cannot be resolved by forwarding alone; stalls the pipeline by inserting bubbles.
+    \item \textbf{Branch resolution moved to ID stage} -- a dedicated \texttt{equalityComparator} resolves \texttt{beq} in the Decode stage (rather than the EX stage), reducing the branch penalty from 2 flush cycles to 1.
+    \item \textbf{Branch Forwarding Unit} -- provides forwarding paths to the branch comparator so that the ID-stage comparison uses up-to-date values.
+    \item \textbf{Store-data forwarding (bonus)} -- a special forwarding path for store instructions whose data register depends on a value being written back simultaneously.
+    \item \textbf{4-to-1 MUX} (\texttt{mux4x2.v}) -- new multiplexer module used for forwarding selection (4 instances).
+    \item \textbf{PC enable signal} -- the PC module now has an \texttt{enable} input (\texttt{PCWrite}) that can freeze the PC during stalls.
 \end{enumerate}
 
 \subsection{Naming Convention for Pipeline Signals}
 All pipeline register signals follow a prefix convention that makes them traceable in the codebase:
 \begin{itemize}
-    \item \textbf{\texttt{IFID*}} --- signals latched in the IF/ID pipeline register (e.g., \texttt{IFIDIR}, \texttt{IFIDPC}).
-    \item \textbf{\texttt{IDEX*}} --- signals latched in the ID/EX register (e.g., \texttt{IDEXrs1}, \texttt{IDEXALUOp}, \texttt{IDEXrd}).
-    \item \textbf{\texttt{EXMEM*}} --- signals latched in the EX/MEM register (e.g., \texttt{EXMEMALUResult}, \texttt{EXMEMrd}).
-    \item \textbf{\texttt{MEMWB*}} --- signals latched in the MEM/WB register (e.g., \texttt{MEMWBReadData}, \texttt{MEMWBrd}).
-    \item \textbf{\texttt{BMIDEX*}} --- ``Bubble Mux'' outputs that feed into ID/EX. When a bubble is asserted, these are zeroed to insert a NOP (e.g., \texttt{BMIDEXRegWrite}).
+    \item \textbf{\texttt{IFID*}} -- internal signals of the IF/ID pipeline register (e.g., \texttt{IFIDIR}, \texttt{IFIDPC}).
+    \item \textbf{\texttt{IDEX*}} -- internal signals of the ID/EX register (e.g., \texttt{IDEXrs1}, \texttt{IDEXALUOp}, \texttt{IDEXrd}).
+    \item \textbf{\texttt{EXMEM*}} -- internal signals of the EX/MEM register (e.g., \texttt{EXMEMALUResult}, \texttt{EXMEMrd}).
+    \item \textbf{\texttt{MEMWB*}} -- internal signals of the MEM/WB register (e.g., \texttt{MEMWBReadData}, \texttt{MEMWBrd}).
+    \item \textbf{\texttt{BMIDEX*}} -- ``Bubble Mux'' outputs that feed into ID/EX. When a bubble is asserted, these are zeroed to insert a NOP (e.g., \texttt{BMIDEXRegWrite}).
     \item Control signals \texttt{Forward*} come from forwarding units; hazard signals \texttt{PCWrite}, \texttt{IFIDEnable}, \texttt{Bubble} come from the Hazard Detection Unit.
 \end{itemize}
 
@@ -103,7 +103,7 @@ All pipeline register signals follow a prefix convention that makes them traceab
 % ══════════════════════════════════════════════════════════════════════════
 \section{Pipeline Registers}
 
-All four pipeline registers are implemented as \texttt{reg} declarations inside \texttt{processor.v} and are updated on \texttt{posedge clk}. On \texttt{reset}, instruction registers (\texttt{IFIDIR}, \texttt{IDEXIR}) are initialized to the NOP encoding \texttt{0x00000013} (\texttt{addi x0, x0, 0}), and all write-enable and memory-enable control signals are cleared to prevent spurious writes.
+All four pipeline registers are implemented as \texttt{reg} declarations inside \texttt{processor.v} and are updated on \texttt{posedge clk}. On \texttt{reset}, instruction registers (\texttt{IFIDIR}, \texttt{IDEXIR}) are initialized to the NOP encoding \texttt{0x00000013} (\texttt{addi x0, x0, 0}), and all write-enable and memory-enable control signals are cleared to prevent false writes.
 
 \subsection{IF/ID Register}
 \begin{center}
@@ -111,7 +111,7 @@ All four pipeline registers are implemented as \texttt{reg} declarations inside 
     \toprule
     \textbf{Signal} & \textbf{Width} & \textbf{Description} \\
     \midrule
-    \texttt{IFIDIR} & 32 & Fetched instruction. Aliased as \texttt{Instruction} via a continuous assign. \\
+    \texttt{IFIDIR} & 32 & Fetched instruction. Used inside the ID stage as \texttt{Instruction} via a continuous assign. \\
     \texttt{IFIDPC} & 64 & PC of the fetched instruction (used for branch target computation). \\
     \bottomrule
 \end{tabular}
@@ -120,7 +120,7 @@ All four pipeline registers are implemented as \texttt{reg} declarations inside 
 \textbf{Special behavior:}
 \begin{itemize}
     \item When \texttt{IFIDEnable = 0} (stall), both fields hold their previous values.
-    \item When \texttt{IFFlush = 1} (taken branch), \texttt{IFIDIR} is overwritten with the NOP instruction to squash the wrongly fetched instruction.
+    \item When \texttt{IFFlush = 1} (taken branch), \texttt{IFIDIR} is overwritten with the NOP instruction to nullify the wrongly fetched instruction.
 \end{itemize}
 
 \subsection{ID/EX Register}
@@ -129,11 +129,11 @@ All four pipeline registers are implemented as \texttt{reg} declarations inside 
     \toprule
     \textbf{Signal} & \textbf{Width} & \textbf{Source (from ID stage)} \\
     \midrule
-    \texttt{IDEXALUOp} & 2 & ALU operation category \\
-    \texttt{IDEXALUSrc} & 1 & ALU input B select \\
-    \texttt{IDEXMemRead} & 1 & Memory read enable \\
-    \texttt{IDEXMemWrite} & 1 & Memory write enable \\
-    \texttt{IDEXMemtoReg} & 1 & Write-back source select \\
+    \texttt{IDEXALUOp} & 2 & ALU operation specifying signal \\
+    \texttt{IDEXALUSrc} & 1 & select signal for ALU input B \\
+    \texttt{IDEXMemRead} & 1 & read enable for Memory  \\
+    \texttt{IDEXMemWrite} & 1 & write enable for Memory \\
+    \texttt{IDEXMemtoReg} & 1 & Source register address for Write-back \\
     \texttt{IDEXRegWrite} & 1 & Register write enable \\
     \midrule
     \texttt{IDEXrs1} & 64 & Read data from register \texttt{rs1} \\
@@ -158,7 +158,7 @@ The data fields (\texttt{IDEXrs1}, \texttt{IDEXrs2}, \texttt{IDEXImm}, etc.) are
     \textbf{Signal} & \textbf{Width} & \textbf{Source (from EX stage)} \\
     \midrule
     \texttt{EXMEMALUResult} & 64 & ALU output \\
-    \texttt{EXMEMrs2} & 64 & Forwarded rs2 value (for store data), sourced from \texttt{ALUm2Op} \\
+    \texttt{EXMEMrs2} & 64 & Forwarded rs2 value (for store data), sourced from \texttt{ALUm2Op}, (it's the latest value of rs2 for EX stage, so we use it) \\
     \texttt{EXMEMrs2Addr} & 5 & rs2 register address (for SD forwarding) \\
     \texttt{EXMEMrd} & 5 & Destination register \\
     \texttt{EXMEMMemRead} & 1 & Memory read enable \\
@@ -196,27 +196,29 @@ The data fields (\texttt{IDEXrs1}, \texttt{IDEXrs2}, \texttt{IDEXImm}, etc.) are
 The Forwarding Unit detects when an instruction in the EX stage needs a result that is still in the EX/MEM or MEM/WB pipeline register. It produces three signals:
 
 \begin{itemize}
-    \item \texttt{ForwardA} [1:0] --- selects ALU operand A source.
-    \item \texttt{ForwardB} [1:0] --- selects ALU operand B source.
-    \item \texttt{Forward\_sd} [1 bit] --- selects store-data source.
+    \item \texttt{ForwardA} [1:0] -- selects ALU operand A source.
+    \item \texttt{ForwardB} [1:0] -- selects ALU operand B source.
+    \item \texttt{Forward\_sd} [1 bit] -- selects store-data source.
 \end{itemize}
 
 \textbf{Inputs:} \texttt{EXMEMRegWrite}, \texttt{MEMWBRegWrite}, \texttt{EXMEMrd}, \texttt{MEMWBrd}, \texttt{EXMEMrs2Addr}, \texttt{IDEXrs1Addr}, \texttt{IDEXrs2Addr}.
 
 \subsubsection{Forwarding Selection}
 \begin{center}
-\begin{tabular}{ccl}
+% Adjust the 8cm to fit your preference; 8cm usually fits well on A4 with 1in margins
+\begin{tabular}{ccp{8cm}} 
     \toprule
-    \texttt{ForwardA/B} & \textbf{MUX input} & \textbf{Condition (A uses rs1Addr, B uses rs2Addr)} \\
+    \textbf{\texttt{ForwardA/B}} & \textbf{MUX input} & \textbf{Condition (A uses rs1Addr, B uses rs2Addr)} \\
     \midrule
-    \texttt{2'b00} & \texttt{IDEXrs1}/\texttt{IDEXrs2} & No hazard \\
-    \texttt{2'b10} & \texttt{EXMEMALUResult} & EX hazard: \texttt{EXMEMRegWrite \&\& EXMEMrd $\neq$ 0 \&\& EXMEMrd == src} \\
+    \texttt{2'b00} & \texttt{IDEXrs1/2} & No hazard \\
+    \addlinespace
+    \texttt{2'b10} & \texttt{EXMEMALU} & EX hazard: \texttt{EXMEMRegWrite \&\& EXMEMrd $\neq$ 0 \&\& EXMEMrd == src} \\
+    \addlinespace
     \texttt{2'b01} & \texttt{write\_back} & MEM hazard: \texttt{MEMWBRegWrite \&\& MEMWBrd $\neq$ 0 \&\& MEMWBrd == src} \\
     \bottomrule
 \end{tabular}
 \end{center}
-
-EX hazard has priority over MEM hazard (checked first via \texttt{if}/\texttt{else if}).
+EX hazard has higher priority over MEM hazard (checked first via \texttt{if}-\texttt{else}).
 
 The forwarded values are routed through two \texttt{mux4x2} instances (\texttt{ALUm1} for operand A, \texttt{ALUm2} for operand B) before entering the ALU.
 
@@ -226,7 +228,7 @@ When a store instruction reaches the MEM stage and its data register (\texttt{EX
 
 \texttt{Forward\_sd = 1} when \texttt{MEMWBRegWrite \&\& MEMWBrd $\neq$ 0 \&\& MEMWBrd == EXMEMrs2Addr}.
 
-A \texttt{mux} instance (\texttt{sdMUX}) selects between \texttt{EXMEMrs2} (normal) and \texttt{write\_back} (forwarded) based on \texttt{Forward\_sd}. The output (\texttt{sdMUXOp}) feeds into the Data Memory's write port.
+A \texttt{mux} is used to (\texttt{sdMUX}) select between \texttt{EXMEMrs2} (normal) and \texttt{write\_back} (forwarded) based on \texttt{Forward\_sd}. The output (\texttt{sdMUXOp}) feeds into the Data Memory's write port.
 
 \subsection{Branch Forwarding Unit (\texttt{BranchForwardingUnit.v})}
 
@@ -234,7 +236,7 @@ Since the branch condition is resolved in the \textbf{ID stage} (not EX), and th
 
 \textbf{Inputs:} \texttt{EXMEMRegWrite}, \texttt{MEMWBRegWrite}, \texttt{EXMEMrd}, \texttt{MEMWBrd}, \texttt{IFIDrs1} (= \texttt{Instruction[19:15]}), \texttt{IFIDrs2} (= \texttt{Instruction[24:20]}).
 
-\textbf{Outputs:} \texttt{ForwardCompA} [1:0], \texttt{ForwardCompB} [1:0] --- same encoding as \texttt{ForwardA/B}. Two \texttt{mux4x2} instances (\texttt{compMuxA}, \texttt{compMuxB}) feed the forwarded values to the \texttt{equalityComparator}.
+\textbf{Outputs:} \texttt{ForwardCompA} [1:0], \texttt{ForwardCompB} [1:0] -- same encoding as \texttt{ForwardA/B}. Two \texttt{mux4x2} instances (\texttt{compMuxA}, \texttt{compMuxB}) feed the forwarded values to the \texttt{equalityComparator}.
 
 % ══════════════════════════════════════════════════════════════════════════
 %  4.  HAZARD DETECTION UNIT
@@ -243,9 +245,9 @@ Since the branch condition is resolved in the \textbf{ID stage} (not EX), and th
 
 The Hazard Detection Unit detects data and control hazards that \emph{cannot} be resolved by forwarding alone. When a stall is required, it asserts:
 \begin{itemize}
-    \item \texttt{PCWrite = 0} --- freezes the PC.
-    \item \texttt{IFIDEnable = 0} --- freezes the IF/ID register.
-    \item \texttt{Bubble = 1} --- zeroes the control signals entering ID/EX (via the Bubble Mux), inserting a NOP.
+    \item \texttt{PCWrite = 0} -- freezes the PC.
+    \item \texttt{IFIDEnable = 0} -- freezes the IF/ID register.
+    \item \texttt{Bubble = 1} -- zeroes the control signals entering ID/EX (via the Bubble Mux), inserting a NOP.
 \end{itemize}
 
 \textbf{Inputs:} \texttt{IDEXMemRead}, \texttt{IDEXRegWrite}, \texttt{EXMEMMemRead}, \texttt{EXMEMrd}, \texttt{Instruction} (current IF/ID instruction), \texttt{IDEXIR} (ID/EX instruction).
@@ -305,8 +307,8 @@ The branch decision: \texttt{IFFlush = Branch \& rs1EqualRs2}.
     \item Only 1 instruction in the IF stage needs to be flushed, giving a \textbf{1-cycle branch penalty} (vs.\ 2 cycles if resolved in EX).
 \end{itemize}
 
-\subsection{Why Not ``Always Not Taken''?}
-The project specification suggests resolving branches in EX with a ``predict not taken'' policy (flush 2 instructions on misprediction). Our implementation resolves in ID, which is strictly better: on a taken branch we flush only 1 instruction; on a not-taken branch we flush 0. The comparator and branch forwarding unit are the added hardware cost.
+\subsection{Branch Resolution in ID Stage}
+To optimize performance, branch instructions are resolved in the Instruction Decode (ID) stage. A dedicated \texttt{equalityComparator} evaluates the branch condition immediately after the operands are fetched. This design choice reduces the branch penalty to a single clock cycle, as only the instruction currently in the IF stage must be flushed if the branch is taken. This implementation uses a \texttt{BranchForwardingUnit} to ensure the comparator has access to updated values from the EX and MEM stages.
 
 % ══════════════════════════════════════════════════════════════════════════
 %  6.  SPECIFIC TEST CASES
@@ -379,16 +381,17 @@ ld   x20, 0(x11)     // loads x20
 sd   x20, 121(x11)   // stores x20 (load-use stall, then forwarding)
 ld   x21, 121(x11)   // loads the stored value back
 \end{lstlisting}
-The \texttt{sd} instruction depends on \texttt{x20} which was just loaded. After the load-use stall and forwarding, \texttt{x20}'s value is correctly written to memory. Additionally, the \texttt{Forward\_sd} path handles cases where the store data comes from MEM/WB.
+The \texttt{sd} instruction depends on \texttt{x20} which was just loaded. After the load-use stall and forwarding, the correct value of \texttt{x20} is written to memory. Additionally, the \texttt{Forward\_sd} path handles cases where the store data comes from MEM/WB.
 
-\subsection{Write-Before-Read Bypass (3-cycle-ago dependency)}
+\subsection{Internal Register File forwarding}
 \begin{lstlisting}[style=verilog, numbers=none]
 ld   x2, 1(x0)       // writes x2
 add  x0, x0, x0      // NOP
 add  x0, x0, x0      // NOP
 add  x3, x2, x0      // reads x2 (3 cycles later, WB and ID same cycle)
 \end{lstlisting}
-When \texttt{ld x2} is in WB and \texttt{add x3} is in ID, the register file's combinational write-before-read bypass ensures \texttt{x2}'s loaded value is available directly. No forwarding unit is needed for this case --- the Register File handles it internally.
+The Register File module implements a combinational ``write-before-read'' bypass to manage dependencies between the Write-Back (WB) and Instruction Decode (ID) stages. When the destination register address of an instruction in the WB stage matches a source register address in the ID stage, the internal logic routes the \texttt{write\_data} bus directly to the \texttt{read\_data} output. 
+
 
 \subsection{Branch Not Taken (No Flush)}
 If \texttt{rs1 $\neq$ rs2}, the branch is not taken: \texttt{IFFlush = 0}, and the instruction in IF proceeds normally with no penalty.
@@ -400,47 +403,30 @@ If \texttt{rs1 $\neq$ rs2}, the branch is not taken: \texttt{IFFlush = 0}, and t
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}
-        \textbf{[PLACEHOLDER: EX-to-EX and MEM-to-EX Forwarding Waveform]}\\[6pt]
-        Show: \texttt{clk}, \texttt{Instruction}, \texttt{ForwardA}, \texttt{ForwardB},
-        \texttt{ALUm1Op}, \texttt{ALUm2Op}, \texttt{EXMEMALUResult}, \texttt{write\_back}.
-    \vspace{2cm}}}
-    \caption{Data forwarding waveform.}
+    \includegraphics[width=0.9\textwidth]{case1.png}
+    \caption{At 80ns (cycle 9): ForwardB=10, EXMEMrd=x4, ALUresult=0xA,\\ A case of EX/MEM to EX forwarding}
     \label{fig:forwarding-waveform}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}
-        \textbf{[PLACEHOLDER: Load-Use Stall Waveform]}\\[6pt]
-        Show: \texttt{clk}, \texttt{Instruction}, \texttt{PCWrite}, \texttt{IFIDEnable},
-        \texttt{Bubble}, \texttt{IDEXMemRead}, \texttt{IDEXrd}.
-    \vspace{2cm}}}
-    \caption{Load-use hazard stall waveform.}
-    \label{fig:load-use-waveform}
+    \includegraphics[width=0.9\textwidth]{case2.png}
+    \caption{At 90ns (cycle 10): ForwardA=01, ForwardB=01, ALUresult=0xFFFFFFFFFFFFFFFB,\\ A case of MEM/WB to EX forwarding}
+    \label{fig:forwarding-waveform}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}
-        \textbf{[PLACEHOLDER: Branch Taken --- Stall + Flush Waveform]}\\[6pt]
-        Show: \texttt{clk}, \texttt{Instruction}, \texttt{IFIDIR}, \texttt{Branch},
-        \texttt{rs1EqualRs2}, \texttt{IFFlush}, \texttt{ForwardCompA}, \texttt{ForwardCompB},
-        \texttt{Bubble}, \texttt{PCWrite}.
-    \vspace{2cm}}}
-    \caption{Branch taken with stall and flush waveform.}
-    \label{fig:branch-waveform}
+    \includegraphics[width=0.9\textwidth]{case3.png}
+    \caption{At 50ns (cycle 6): ForwardA=01, ForwardB=10, ALUresult=0xF. A case of EX/MEM to EX and MEM/WB to EX forwarding}
+    \label{fig:forwarding-waveform}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \fbox{\parbox{0.9\textwidth}{\centering\vspace{2cm}
-        \textbf{[PLACEHOLDER: Store-Data Forwarding Waveform]}\\[6pt]
-        Show: \texttt{clk}, \texttt{Instruction}, \texttt{Forward\_sd}, \texttt{sdMUXOp},
-        \texttt{EXMEMrs2}, \texttt{write\_back}.
-    \vspace{2cm}}}
-    \caption{Store-data forwarding waveform.}
-    \label{fig:sd-forward-waveform}
+    \includegraphics[width=0.85\textwidth]{case4.png}
+    \caption{Waveform Analysis at 140\,ns (Cycle 15): Branch detection ($rs1EqualRs2=1$) triggers a pipeline flush ($IFFlush=1$). By 150\,ns (Cycle 16), a NOP (0x00000013) is inserted into the IF/ID register and the PC jumps to the target instruction.}
+    \label{fig:forwarding-waveform}
 \end{figure}
 
 % ══════════════════════════════════════════════════════════════════════════
@@ -503,20 +489,19 @@ Total clock cycles: \textbf{60}. This includes the pipeline fill latency, stall 
 % ══════════════════════════════════════════════════════════════════════════
 %  9.  BONUS FEATURES SUMMARY
 % ══════════════════════════════════════════════════════════════════════════
-\section{Bonus Features}
+\section{BONUS sections}
+Beyond basic hazard handling, the design includes specific optimizations to improve cycle efficiency:
 
-\begin{enumerate}
-    \item \textbf{Branch resolution in ID stage} --- Reduces branch penalty from 2 to 1 cycle. Requires added hardware: \texttt{equalityComparator}, \texttt{BranchForwardingUnit}, two \texttt{mux4x2} instances (\texttt{compMuxA}, \texttt{compMuxB}).
-
-    \item \textbf{Store-data forwarding} --- Handles the case where \texttt{sd}'s data register matches MEM/WB's destination. Uses \texttt{Forward\_sd} signal and \texttt{sdMUX}, avoiding an unnecessary stall.
-
-    \item \textbf{Branch-specific stall logic in HDU} --- The HDU distinguishes between \texttt{beq} and non-branch instructions: for \texttt{beq}, it checks both the N-1 (ID/EX) and N-2 (EX/MEM load) dependencies, while for non-branch instructions it only checks the standard load-use hazard.
-\end{enumerate}
+\begin{itemize}
+    \item \textbf{Store-Data Bypassing:} A specialized forwarding path (\texttt{Forward\_sd}) was implemented to handle dependencies where a store instruction's data is produced by an instruction in the Write-Back stage. This avoids a 1-cycle stall in load-store sequences.
+    \item \textbf{Early Evaluation:} By resolving branches in the ID stage, the stall penalty is halved compared to EX-stage resolution. This involves integrated stalling logic that accounts for dependencies $N-1$ and $N-2$ level instructions.
+    \item \textbf{Integrated Hazard Logic:} The Hazard Detection Unit applies the minimum necessary stall cycles for each specific data dependency, and implements logic for branch as well as non-branch related Hazards.
+\end{itemize}
 
 % ══════════════════════════════════════════════════════════════════════════
 %  10. NEW FILES ADDED
 % ══════════════════════════════════════════════════════════════════════════
-\section{New Files Added (on top of Sequential)}
+\section{Files specific to Pipelined Implementation}
 
 \begin{center}
 \begin{tabular}{ll}
@@ -533,23 +518,7 @@ Total clock cycles: \textbf{60}. This includes the pipeline fill latency, stall 
 \end{tabular}
 \end{center}
 
-\textbf{Modified files:} \texttt{processor.v} (rewritten for pipelining), \texttt{PC.v} (added \texttt{enable} port).\\
-\textbf{Unchanged files:} \texttt{alu.v}, \texttt{ALUControl.v}, \texttt{Control.v}, \texttt{DataMem.v}, \texttt{ImmGen.v}, \texttt{instruction\_mem.v}, \texttt{mux.v}, \texttt{RegisterFile.v}, \texttt{Adder.v}, \texttt{Shiftleft1.v}, and all ALU sub-modules.
-
 % ══════════════════════════════════════════════════════════════════════════
-%  11. HOW TO SIMULATE
-% ══════════════════════════════════════════════════════════════════════════
-\section{How to Simulate}
-\begin{lstlisting}[language=bash, frame=single]
-# Compile the system-level testbench
-iverilog -o pipe_tb.vvp pipe_tb.v
-
-# Run the simulation
-vvp pipe_tb.vvp
-
-# View waveforms (if VCD dumping is enabled)
-gtkwave pipe_tb.vcd
-\end{lstlisting}
 
 % ══════════════════════════════════════════════════════════════════════════
 %  12. TEAM CONTRIBUTIONS
