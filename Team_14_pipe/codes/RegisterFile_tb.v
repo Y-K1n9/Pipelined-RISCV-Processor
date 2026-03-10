@@ -2,7 +2,7 @@
 `include "RegisterFile.v"
 
 module RegisterFile_tb;
-//since we need to vary inputs and not vary
+// since we need to vary inputs and not vary
 // outputs directly, testbench acts like a multimeter
 // where we can measure the outputs of ckt like
 // thus wire for outputs, reg for inputs....
@@ -68,10 +68,10 @@ module RegisterFile_tb;
         // it should still return the value from prev. testcase
         run_test(3, 5'd1, 5'd1, 5'd1, 64'h1111222233334444, 64'h5555AAAA5555AAAA, 64'h5555AAAA5555AAAA, 0);
 
-        // Boundary Registers - Stress test the highest address (x31) and bit-flipping pattern
+        // Boundary Registers - test the highest address (x31) and bit-flipping pattern
         run_test(4, 5'd31, 5'd31, 5'd1, 64'hA5A55A5AA5A55A5A, 64'hA5A55A5AA5A55A5A, 64'h5555AAAA5555AAAA, 1);
 
-        // Dual Port Stress - Read two different previously written registers (x31 and x1) 
+        // Dual Port Test - Read two different previously written registers (x31 and x1) 
         // while writing to a third (x2). Verifies no cross-talk between ports.
         run_test(5, 5'd2, 5'd31, 5'd1, 64'h1234567890ABCDEF, 64'hA5A55A5AA5A55A5A, 64'h5555AAAA5555AAAA, 1);
 

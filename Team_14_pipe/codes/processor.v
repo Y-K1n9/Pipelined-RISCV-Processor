@@ -284,7 +284,7 @@ reg BMIDEXALUSrc;
 reg BMIDEXMemtoReg;
 reg BMIDEXRegWrite;
 always@(*)begin
-    if(Bubble) begin // or:    if(Bubble||IFFlush) begin::: If I do if(Bubble||IFFlush) begin, then 
+    if(Bubble) begin // or:    if(Bubble||IFFlush) begin ::: If I do if(Bubble||IFFlush) begin, then 
         BMIDEXMemRead = 1'b0;  //   the branch instruction itself will become useless
         BMIDEXMemWrite = 1'b0;
         BMIDEXALUOp = 2'b00;
