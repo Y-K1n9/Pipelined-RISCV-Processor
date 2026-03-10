@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 `include "processor.v"
 
-module seq_tb;
+module pipe_tb;
 
     reg clk;
     reg reset;
@@ -22,10 +22,12 @@ module seq_tb;
     integer clockCycles = 1;
     integer running = 0;
     initial begin
+        $dumpfile("pipe_tb.vcd"); // Name of the file to be created
+        $dumpvars(0, pipe_tb);    // '0' means dump ALL signals in pipe_tb and its sub-modules
         reset = 1;
         @(posedge clk); #1;// we wait for 1st posedge of clk and then disassert reset...
         reset = 0;
-        wait(uut.Instruction == 32'h00000000);
+        wait(uut.IMEMOut == 32'h00000000);
 
         $display("\n==== REGISTER FILE CONTENTS ====");
         for (i = 0; i < 32; i = i + 1) begin

@@ -345,7 +345,7 @@ always@(posedge clk) begin
         EXMEMALUResult<=ALUresult;
         EXMEMMemtoReg<=IDEXMemtoReg;
         EXMEMRegWrite<=IDEXRegWrite;
-        EXMEMrs2<=IDEXrs2;
+        EXMEMrs2<=ALUm2Op;
         EXMEMrs2Addr<=IDEXrs2Addr;
         // EXMEMrd<=IDEXIR[11:7];
         EXMEMrd <= IDEXrd;
